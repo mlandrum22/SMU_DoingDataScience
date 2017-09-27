@@ -1,0 +1,95 @@
+---
+title: "DDS Assignemnt 4 - Versioning"
+author: "Bruce Granger"
+date: "September 24, 2017"
+output: html_document
+---
+
+#### The data used in this exercise was provided by fivethirtyeight on GitHub, found [here](https://github.com/rudeboybert/fivethirtyeight).
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+#### Question 1: Navigate on GitHub to https://github.com/rudeboybert/fivethirtyeight and read README.md
+
+#### Question 1a: Install the fivethirtyeight package.
+  + install.packages("fivethirtyeight")
+  + library(fivethirtyeight)
+
+```{r Q_1a, echo=TRUE}
+library(fivethirtyeight)
+```
+
+#### Question 1b: In the listing of Data sets in package 'fivethirtyeight,' assign the eighteenth data set to an object 'df.' 
+
+```{r Q_1b, echo=TRUE}
+df<-data.frame(college_recent_grads)
+```
+
+#### Question 1c: Use a more detailed list of the data sets to write out the URL in a comment to the related news story. 
+
+The URL associated with the FiveThirtyEight - "College_Recent_Grads" dataset" is:
+
+<http://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/>
+
+#### Question 1d: Using R command(s), give the dimensions and column names of this data frame. 
+```{r Q_1d, echo=TRUE}
+x<-dim(df)
+row<-x[1]
+column<-x[2]
+
+sprintf("The number of rows (observations) and columns (variables) in the dataframe are: %s and %s, respectively.", row, column)
+```
+
+#### Question 2a:  Write an R command that gives you the column names of the data frame.  Right after that, write one that counts the number of columns but not rows.  Hint: The number should match one of your numbers in Question 1d for dimensions.
+
+```{r Q_2a, echo=TRUE}
+colnames(df)
+
+x<-ncol(df)
+sprintf("The number of columns (variables) in the dataframe is: %s.", x)
+```
+
+#### Question 2b:  Generate a count of each unique major_category in the data frame.  I recommend using libraries to help.  I have demonstrated one briefly in live-session.  To be clear, this should look like a matrix or data frame containing the major_category and the frequency it occurs in the dataset.  Assign it to major_count
+
+```{r Q_2b, echo=TRUE}
+library(dplyr)
+major_count<-count(df,major_category)
+```
+
+The following is the frequency distribution of the 'major_catagory:
+
+```{r Q_2ba, echo=TRUE}
+major_count
+```
+
+#### Question 2c: To make things easier to read, enter par(las=2) before your plot to make the text perpendicular to the axis.  Make a barplot of major_count.  Make sure to label the title with something informative (check the vignette if you need), label the x and y axis, and make it any color other than grey.  Assign the major_category labels to their respective bar.  Flip the barplot horizontally so that bars extend to the right, not upward.  All of these options can be done in a single pass of barplot(). Note: It's okay if it's wider than the preview pane.
+
+
+```{r Q_2c, echo=TRUE}
+mcplot<-major_count
+par(las=2)
+barplot(mcplot$n, horiz = TRUE, col = "red", names= mcplot$major_category, xlim = c(0,35), xlab = "Number of Majors", cex.names = 0.3)
+```
+
+#### Question 2d: Write the fivethirtyeight data to a csv file.  Make sure that it does not have row labels.
+
+```{r Q_2d, echo=TRUE}
+path<-"/Users/bgranger/Documents/SMU/DDS/SMU_DoingDataScience/Assignment_4"
+setwd(path)
+write.table(df, file = "college_recent_grads.csv",row.names=FALSE, na="",col.names=TRUE, sep=",")
+```
+
+#### Question 3a: Start a new repository on GitHub for your SMU MSDS homework.  On your local device, make sure there is a directory for Homework at the minimum; you are welcome to add whatever you would like to this repo in addition to your requirements here.
+
+##### GitHelp https://help.github.com/, https://help.github.com/articles/git-cheatsheet/
+
+#### Question 3b: Create a README.md file which explains the purpose of the repository, the topics included, the sources for the material you post, and contact information in case of questions. Remember, the one in the root directory should be general.  You are welcome to make short READMEs for each assignment individually in other folders. 
+
+#### Question 3c: In one (or more) of the nested directories, post your RMarkdown script, HTML file, and data from 'fivethirtyeight.'  Make sure that in your README or elsewhere that you credit fivethirtyeight in some way. 
+
+#### Question 3d: In your RMarkdown script, please provide the link to this GitHub so the grader can see it.
+
+[G-Bruce/SMU_DoingDataScience - Assignment 4 - Repo](https://github.com/G-Bruce/SMU_DoingDataScience.git)
