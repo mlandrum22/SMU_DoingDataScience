@@ -1,0 +1,115 @@
+# 6306_Doing_Data_Science
+# Fall 2017 - Sept, 2017
+# Assignment 1
+# ENCODING: ISO-8859-1 (System Default)
+# Bruce Granger
+#------------------------------------------------------------------------------
+# SETUP
+#------------------------------------------------------------------------------
+# REDIRECT SCREEN OUTPUT TO FILE, sink() WILL BE UTILIZED
+sink("N:/SMU/6306_Doing_Data_Science_Fall2017/Assignments/Assignment_1_SWIRL_2.txt")
+#------------------------------------------------------------------------------
+# DEFAULT WORKING DIRECTORY
+# "N:/SMU/6306_Doing_Data_Science_Fall2017"
+working_directory_startup<-getwd()
+
+# ASSIGNED WORKING DIRECTOR
+assigned_working_directory <- "N:/SMU/6306_Doing_Data_Science_Fall2017"
+setwd(assigned_working_directory)
+getwd()
+#------------------------------------------------------------------------------
+# ENVIRONMENT VARIABLES
+#------------------------------------------------------------------------------
+n<-64
+#------------------------------------------------------------------------------
+# 1) BACIS MATH
+#------------------------------------------------------------------------------
+q1a<- "The log of a positive number?"
+q1a
+q1a_log<-log(n)
+q1a_log
+#------------------------------------------------------------------------------
+q1b<- "What is the default base for the log function? Calculate the log of your previous number with a different base."
+q1b
+q1b1<- "The default base for the log function in R is the natural log"
+q1b2<-log(n,10)
+q1b2
+q1b3<-log10(n)
+q1b3
+#------------------------------------------------------------------------------
+q1c<- "The log of a negative number?"
+q1c
+q1c1<- log(-1)
+q1c2<- "This produces a return of NaN, which means 'Not a Number'."
+#------------------------------------------------------------------------------
+q1c<- "The square-root of a positive number."
+q1c
+q1c1<- sqrt(n)
+q1c1
+#------------------------------------------------------------------------------
+# 2) RANDOM NUMBER GENERATION
+#------------------------------------------------------------------------------
+q2a<-"Create a vector of 15 standard normal random variables. Calculate its mean and SD"
+q2a
+q2a1<- rnorm(15)
+q2a1
+q2a1_mean<-mean(q2a1)
+q2a1_mean
+q2a1_sd<-sd(q2a1)
+q2a1_sd
+#------------------------------------------------------------------------------
+q2b<-"Change the mean to 10 and the SD to 2 and recalculate the vector of 15 random normal variables. Calculate its mean and SD."
+q2b
+q2b1<-rnorm(15, mean= 10, sd=2)
+q2b1
+q2b1_mean<-mean(q2b1)
+q2b1_mean
+q2b1_sd<-sd(q2b1)
+q2b1_sd
+#------------------------------------------------------------------------------
+q2c<-"Why are the means and SD not exactly the same as the means and SDs specified in the function?"
+q2c1<-"Since rnorm was used to select the fifteen random normal variables, the small selection sample doesn't mean the random sample will match the values"
+#------------------------------------------------------------------------------
+# 3) VECTOR OPERATIONS
+#------------------------------------------------------------------------------
+q3a<-"The weights of 6 individuals in kg are 60, 72, 57, 90, 95, 72."
+q3a
+q3b<-"Their heights (in m) are 1.80, 1.85, 1.72, 1.90, 1.74, 1.91."
+q3b
+q3c<-"Enter these vectors into R."
+q3c_weight_kg<- c(60, 72, 57, 90, 95, 72)
+q3c_weight_kg
+q3c_hight_m<-c(1.80, 1.85, 1.72, 1.90, 1.74, 1.91)
+q3c_hight_m
+q3d<-"Create a scatterplot of weight vs. height. Interpret the scatterplot."
+q3d
+plot(q3c_weight_kg,q3c_hight_m, main='Individual Weight to Height', 
+     xlab = 'Weight', ylab='Height', pch=19)
+q3d_interpretation<- "Generally, height and weight are positively correlated, meaning as one increases, so does the other."
+q3e<-"Calculate the BMI for each individual."
+q3e
+q3c_bmi<-q3c_weight_kg/((q3c_hight_m)^2)
+q3c_bmi
+q3f<-"Calculate the mean for weight."
+q3c_weight_mean<-mean(q3c_weight_kg)
+q3c_weight_mean
+q3g<-"Subtract the mean from each value of weight."
+q3g_variance<-q3c_weight_kg-q3c_weight_mean
+q3g_variance
+q3h<-"Sum the result."
+q3h_sum_of_variance<-sum(q3g_variance)
+q3h_sum_of_variance
+#------------------------------------------------------------------------------
+# 4) DATA SCIENCE PROFILE
+#------------------------------------------------------------------------------
+data_science_skill<-c('Computer Programming', "Math", "Statistics", "Machine Learning", "Domain Expertise", "Communications", "Presentation Skills", "Data Vizulation")
+data_science_skill
+data_science_skill_rank<-c(3.5, 2.5, 2, 1,4,4,3,3)
+data_science_skill_rank
+data_science_profile<-data.frame(data_science_skill,data_science_skill_rank, stringsAsFactors = FALSE)
+data_science_profile
+#------------------------------------------------------------------------------
+# CLOSEOUT SINK
+#------------------------------------------------------------------------------
+sink()
+#------------------------------------------------------------------------------

@@ -1,0 +1,21 @@
+# 6306_Doing_Data_Science
+# Fall 2017 - Sept, 2017
+# Assignment 2 - SWIRL
+# Bruce Granger
+#--------------------------------------------------------------------------------------
+# REFERENCES
+# http://swirlstats.com/scn/
+# https://github.com/swirldev/swirl_courses
+#--------------------------------------------------------------------------------------
+# REDIRECT SCREEN OUTPUT TO FILE, sink() WILL BE UTILIZED
+sink("N:/SMU/6306_Doing_Data_Science_Fall2017/Assignments/Assignment_2/Assignment_2_SWIRL_Logic.txt")
+
+#--------------------------------------------------------------------------------------
+# MODULES
+# 8: LOGIC
+#--------------------------------------------------------------------------------------
+library(swirl)
+swirl()
+#--------------------------------------------------------------------------------------
+# TURN OFF SCREEN REDIRECT OUTPUT TO FILE 
+sink()
