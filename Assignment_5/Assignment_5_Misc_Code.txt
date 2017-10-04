@@ -1,0 +1,33 @@
+final_all<- merge(yob2015, y2016, by=c("Name","Gender"), all = TRUE)
+final_not_all<-final_all[!complete.cases(final_all),]
+
+write.table(final_all, "final_all.txt", sep="\t") 
+write.table(final_not_all, "final_not_all.txt", sep="\t")
+
+# SUBSET THE DATAFRAME WHERE GENDER == F
+final_all_f <- final_all[ which(final_all$Gender =='F'), ]
+final_not_all_f <- final_not_all[ which(final_not_all$Gender =='F'), ]
+
+write.table(final_all_f, "final_all_f.txt", sep="\t")
+write.table(final_not_all_f, "final_not_all_f.txt", sep="\t")
+
+# MERGE THE COUNTS BY YEAR INTO A SINGLE COLUMN
+final_f_sum<-(final_f %>% select(Name, Freq.x, Freq.y) %>% group_by(Name) %>% summarise(Count=sum(Freq.x + Freq.y)))
+
+write.table(final_f_sum, "final_f_sum.txt", sep="\t")
+
+sprintf("After merging the female names for both years, the total number of names is %s.", prettyNum(sum(final_f_sum$Count), big.mark=","))
+
+F_Count_2015<-(yob2015 %>% select(Gender, Freq) %>% group_by(Gender) %>% summarise(Count=sum(Freq)))
+
+# TOTAL 2015YOB, FEMALE COUNT OF FREQUENCY
+F_Count_2015<-F_Count_2015[1,2]
+
+# TOTAL 2016YOB, FEMALE COUNT OF FREQUENCY
+F_Count_2016<-(y2016 %>% select(Gender, Freq) %>% group_by(Gender) %>% summarise(Count=sum(Freq)))
+F_Count_2016<-F_Count_2016[1,2]
+
+#RECONCILIATION STEP
+sprintf("The total number of female names in 2015 and 2016 are %s and %s; respectively.", prettyNum(F_Count_2015, big.mark=","), prettyNum(F_Count_2016,big.mark=","))
+
+sprintf("The total number of female names for both years (post 'yyy' removal from 2016) is %s.", prettyNum((F_Count_2015 + F_Count_2016), big.mark=","))

@@ -1,0 +1,35 @@
+Background
+A registry of student witches and wizards is being altered to be more user-friendly.  The existing dataframe is somewhat difficult to understand.  You are hired to make things more human-readable. They've given you a sample to start.
+
+The CSV consists of the following columns:
+Name: Student names all in one observation (both first and last)
+Info: The student's House and Year in the school (G is Gryffindor, etc.)
+DADA: Exam scores for the Defense Against the Dark Arts O.W.L.
+Potions: Exam scores for the Potions O.W.L.
+
+The Ministry would prefer the following
+Name be separated to have first and last names in separate columns.
+New columns for House and for Year in school separately.
+Create a dataframe that only contains the tidy data.
+
+If you have extra time, feel free to recode House to full names (Gryffindor, Hufflepuff, Ravenclaw, Slytherin) and exams to their grades (Outstanding, Exceeds Expectations, Acceptable, Poor, Dreadful, Troll.)
+
+
+cbind(c(G, R, S, H), c("Gryffindor", "Ravenclaw", "Slytherin", "Hufflepuff"))
+
+house <- colsplit(unit5$Info,"", names = c("House", "Grade"))
+newdf <- cbind(newdf,house)
+newdf$House <- sub("G","Gryffindor",newdf$House,fixed = TRUE)
+newdf$House <- sub("R","Ravenclaw",newdf$House,fixed = TRUE)
+newdf$House <- sub("S","Slytherin",newdf$House,fixed = TRUE)
+newdf$House <- sub("H","Hufflepuff",newdf$House,fixed = TRUE)
+df <- c()
+
+
+cbind(c(G, R, S, H), c("Gryffindor", "Ravenclaw", "Slytherin", "Hufflepuff"))
+
+
+df <- data.frame(newdf$FirstName,newdf$LastName,newdf$House,newdf$Grade)
+df
+
+newdf$House <- sub("H","Hufflepuff",newdf$House,fixed = TRUE)
