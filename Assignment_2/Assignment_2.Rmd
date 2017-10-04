@@ -1,0 +1,119 @@
+---
+title: 'MSDS 6306: Assignment #2'
+author: "Bruce Granger"
+date: "September 8, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+sessionInfo()
+```
+
+## QUESTION 1
+
+### What is a basic workflow for reproducible research?
+* Raw data
+* Gather Data
+* Analysis
+* Markdown/HTML Website Presentations
+* LaTeX Book, Article, & Sldeshow Presentations
+
+![Reproducible Research - Workflow](N:/SMU/6306_Doing_Data_Science_Fall2017/Assignments/Assignment_2/image1.jpg){width=250px}
+
+#### REFERENCE: Embedded Image
+1. https://stackoverflow.com/questions/25166624/insert-picture-table-in-rmarkdown
+2. https://stackoverflow.com/questions/15625990/how-to-set-size-for-local-image-using-knitr-for-markdown 
+
+### What are five practical tips for making research reproducible?
+1. Document everything
+2. Everything in a text file.
+3. All files should be human readable.
+4. Explicitly tie your files together.
+5. Have a plan to organize, store, & make files available.
+
+### Give an example of how you might implement each tip.
+
+1. Document Everything: 
+* I would suggest a strategy where documenting code from the outset of the project, such as code block objectives and explain high-level details of how each objective is being achieved.  Employing this tactic will not only assist others who are stepping through it for the first time, but it will assist the developer(s) if he/she/they have been away from the code for awhile and need to become reacquainted with the code. 
+2. Everything in a text file: 
+* Utilizing NotePad++, which is a text editor, and the plug-in called "Spell-Checker" is great way to implement the use of a text file while not loosing spell-check functionality.  Keeping the data in a text file is ensuring "future proofing" your work for others. 
+3. All files should be human readable: 
+* By making all files as human readable is another step in "future proofing" the data.  An example, as was previously stated, is saving the data in a .txt or .csv format.  This also includes commenting your code for yourself and for the benefit of others.
+4. Explicitly tie your files together:
+Another means of "future-proofing" is to explain in detail how datasets are relate to one another.  If others attempt to reproduce your results, they must know how datasets are relate to one another, which means the relationship must be explicit.
+5. Have a plan to organize, store, & make files available:
+* In order for anyone to reproduce, the above mentioned items needed to be followed, but in the end they need to access the data.  This means there needs to be a means by which to share, like [GitHub](github.com) ![](N:/SMU/6306_Doing_Data_Science_Fall2017/Assignments/Assignment_2/GitHub.png){width=20px} and/or [Dropbox](dropbox.com) ![](N:/SMU/6306_Doing_Data_Science_Fall2017/Assignments/Assignment_2/dropbox.png){width=20px}.
+
+### Which one of these do you think will be the most difficult?
+
+* I would say "Documenting Everything" and "Have a plan to organize, store, & make files available".  The reason I say this I have been developed code and maintaining current documentation and publishing it is very difficult to do.
+
+## QUESTION 2
+
+### Download and complete "air_hist.R" code from the Files Tab on 2DS. You will build scatter plots using the plot function.
+
+#### Question 2a
+
+1. Complete the following code to yield a scatterplot with x as Month and y as Temp.
+2. Make the x label "Month" and the y label "Temperature"
+3. Finally, make the title of the plot "Temperature by Month"
+
+```{r airquality}
+plot(x=airquality$Month, y=airquality$Temp,
+     xlab="Month", ylab="Temperature",
+     main="Temperature by Month"
+)
+
+```
+
+#### Question 2b
+
+1. Build a scatter plot with x as Temperature and y as Ozone 
+2. Complete the following code:
+* Make the x label "Temperature" and the y label "Ozone",
+* Make the title of the plot "Temperature vs Ozone"
+
+
+```{r airquality_2}
+airquality_nona<-na.omit(airquality)
+plot(x=airquality_nona$Temp, y=airquality_nona$Ozone,
+     xlab="Temperature", ylab="Ozone",
+     main="Temperature vs Ozone"
+)
+
+```
+
+## QUESTION 3
+
+### Download and complete "knit_cars.Rmd" in the Files tab on 2DS.
+
+#### Question 3a
+
+1. Complete the following scatter plot. 
++ The x axis is pressure, while the y axis is temperature
++ Please title the graph "Temperature vs Pressure"
+
+```{r pressure_plot, echo=TRUE}
+plot(y=pressure$temperature, x=pressure$pressure,
+     main="Temperature vs Pressure", 
+     xlab="Pressure", ylab="Temperature"
+     )
+```
+
+#### Question 3b
+
+1. Complete the following scatter plot:
++ y axis is pressure, x axis is temperature,
++ Label the y axis as "Pressure" and the x axis as "Temperature", 
++ Title the graph as "Pressure vs Temperature"
+
+```{r pressure_plot2, echo=TRUE}
+plot(x=pressure$temperature, y=pressure$pressure,
+     main="Pressure vs Temperature", 
+     ylab="Pressure", xlab="Temperature"
+     )
+```
