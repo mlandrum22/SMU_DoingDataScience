@@ -38,9 +38,22 @@ Breweries_Per_State<-Breweries %>% group_by(State) %>% summarise(Count_By_State 
 # Q2 Merge beer data with the breweries data.... 
 #    b) Print the ???rst 6 observations and the last six observations to check the merged ???le
 Breweries_Beers<- merge(Breweries, Beers, by=c("Brewery_id"), all = TRUE)
+names(Breweries_Beers)[c(2,5)] <- c("Brewery Name","Beer Name")   # Changed the names of the columns
+head(Breweries_Beers,6)
+tail(Breweries_Beers,6)
 
 # Q3: NA's ###################################################################################################
 # Report the number of NA's in each column.
+
+emptyObservations <- c( sum(is.na(Breweries_Beers$Brewery_id)),     # Sums NAs for Brewery IDs
+                        sum(is.na(Breweries_Beers$City)),           # Sums NAs for Cities
+                        sum(is.na(Breweries_Beers$State)),          # Sums NAs for States
+                        sum(is.na(Breweries_Beers$`Beer Name`)),    # Sums NAs for Beer Names
+                        sum(is.na(Breweries_Beers$Beer_ID)),        # Sums NAs for Beer IDs
+                        sum(is.na(Breweries_Beers$ABV)),            # Sums NAs for ABV
+                        sum(is.na(Breweries_Beers$IBU))             # Sums NAs for IBU
+  )
+emptyObservations   # Only NAs are in ABV and IBU columns. 62 ABV, 1005 IBU
 
 # Q4 MEDIAN ALCHOL CONTENT AND BITTERNESS ####################################################################
 # a) Compute the median alcohol content and international bitterness unit for each state. 
@@ -49,9 +62,14 @@ Breweries_Beers<- merge(Breweries, Beers, by=c("Brewery_id"), all = TRUE)
 # Q5: BY STATE: MAX ALCOHOLIC BEER, BITTER BEER ############################################################## 
 # a) Which state has the maximum alcoholic (ABV) beer? 
 # b) Which state has the most bitter (IBU) beer?
+sortedByABV <- Breweries_Beers[ order(Breweries_Beers$ABV, decreasing=TRUE), ]    # Sorts the DF by ABV
+sortedByABV[1,"State"]   #Colorado
+sortedByIBU <- Breweries_Beers[ order(Breweries_Beers$IBU, decreasing=TRUE), ]    # Sorts the DF by IBU
+sortedByIBU[1,"State"]   #Oregon
 
 # Q6: SUMMARY STATS FOR ABV ##################################################################################
 #  Summary statistics for the ABV variable.
+summary(Breweries_Beers$ABV)   # Min 0.001   1Q 0.05   Median 0.056   3Q 0.067   Max 0.128    62 NA
 
 # Q7: CORRELATION: BITTERNESS AND ALCOHOLIC CONTENT ##########################################################
 # Is there an apparent relationship between the bitterness of the beer and its alcoholic content? 
