@@ -1,5 +1,5 @@
 ---
-title: "DDS Assignemnt 5 - Data: Munging-Merging"
+title: "DDS Assignment 5 - Data: Munging-Merging"
 author: "Bruce Granger"
 date: "September 28, 2017"
 output: html_document
@@ -53,9 +53,9 @@ library(magrittr)
 
 ### Data Munging
 
-##### Utilize yob2016.txt for this question. This file is a series of popular children's names born in the year 2016 in the United States.  It consists of three columns with a first name, a gender, and the amount of children given that name.  However, the data is raw and will need cleaning to make it tidy and usable. 
+##### Utilize yob2016.txt for this question. This file is a series of popular children's names born in the year 2016 in the United States.  It consists of three columns with a first name, a gender, and the number of children given that name.  However, the data is raw and will need cleaning to make it tidy and usable. 
 
-  1a) First, import the .txt file into R so you can process it.  Keep in mind this is not a CSV file.  You might have to open the file to see what you're dealing with.  Assign the resulting data frame to an object, df, that consists of three columns with humanreadable column names for each.
+  1a) First, import the .txt file into R so you can process it.  Keep in mind this is not a CSV file.  You might have to open the file to see what you're dealing with.  Assign the resulting data frame to an object, df, that consists of three columns with human readable column names for each.
 
 ```{r Q_1a, echo=TRUE}
 # STORE THE PATH TO FILE VARIABLE INTO THE PATH OBJECT
@@ -141,7 +141,7 @@ y2016 %>% select(Gender, Freq) %>% group_by(Gender) %>% summarise(Count=sum(Freq
   2c) Merge y2016 and y2015 by your Name column; assign it to final.  
   
     - The client only cares about names that have data for both 2016 and 2015; 
-    - there should be no NA values in either of your amount of children rows after merging.
+    - there should be no NA values in either of your number of children rows after merging.
     
 ```{r Q_2c, echo=TRUE}
 # MERGE THE TWO DATASETS INTO ONE, 'JOIN' WILL BE BASED UPON NAME AND GENDER FIELDS.
@@ -162,7 +162,7 @@ prettyNum(nrow(final), big.mark=",")
 
 ##### Utilize your data frame object final for this part. 
 
-  3a) Create a new column called "Total" in final that adds the amount of children in 2015 and 2016 together.  In those two years combined, how many people were given popular names?
+  3a) Create a new column called "Total" in final that adds the number of children in 2015 and 2016 together.  In those two years combined, how many people were given popular names?
   
 ```{r Q_3a, echo=TRUE}
 # CREATE A NEW COLUMN CALLED TOTAL, THE CONTENTS OF THE CELL IS THE ADDITION OF THE FREQ.X AND THE FREQ.Y VALUES
