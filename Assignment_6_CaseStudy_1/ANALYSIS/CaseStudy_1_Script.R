@@ -10,10 +10,12 @@
 #rm(kansas09)
 #detach("package:acs", unload=TRUE)
 
+# SETUP ######################################################################################################
 # DEFINE WORKING DIRECTORY
 path<-"/Users/bgranger/Documents/SMU/DDS/SMU_DoingDataScience/Assignment_6_CaseStudy_1/DATA"
 setwd(path)
 
+# READ DATA ##################################################################################################
 #READ BREWERIES DATA
 Breweries<-read.csv("Breweries.csv", sep = ",", header = TRUE, stringsAsFactors = TRUE, col.names =c("Brewery_id","Name","City","State"))
 Breweries$Name<-as.character(Breweries$Name)
@@ -22,22 +24,40 @@ Breweries$Name<-as.character(Breweries$Name)
 Beers<-read.csv("Beers.csv", sep = ",", header = TRUE, stringsAsFactors = FALSE)
 Beers$Style<-as.factor(Beers$Style)
 
-# MERGE BREWERIES AND BEER                       
-Breweries_Beers<- merge(Breweries, Beers, by=c("Brewery_id"), all = TRUE)
 
-
-
-
-#library(doBy)
-rm(doBy)
-
-# Q1: How many breweries are present in each state?
+# Q1: How many breweries are present in each state? ###########################################################
 ## LOAD magrittr PACKAGE TO ACCESS THE PIPE "%>%" OPERATOR, WHICH ALLOWS FOR VALUES TO FORWARD
 ## INTO AN EXPRESSION OR FUNCTIONAL CALL
 ## LOAD THE dplyr PACKAGE TO ACCESS THE "group_by"
 library(magrittr)
 library(dplyr)
 Breweries_Per_State<-Breweries %>% group_by(State) %>% summarise(Count_By_State = length(State))
+
+# Q2: MERGE DATA #############################################################################################
+# MERGE BREWERIES AND BEER                       
+# Q2 Merge beer data with the breweries data.... 
+#    b) Print the ???rst 6 observations and the last six observations to check the merged ???le
+Breweries_Beers<- merge(Breweries, Beers, by=c("Brewery_id"), all = TRUE)
+
+# Q3: NA's ###################################################################################################
+# Report the number of NA's in each column.
+
+# Q4 MEDIAN ALCHOL CONTENT AND BITTERNESS ####################################################################
+# a) Compute the median alcohol content and international bitterness unit for each state. 
+# b) Plot a bar chart to compare.
+
+# Q5: BY STATE: MAX ALCOHOLIC BEER, BITTER BEER ############################################################## 
+# a) Which state has the maximum alcoholic (ABV) beer? 
+# b) Which state has the most bitter (IBU) beer?
+
+# Q6: SUMMARY STATS FOR ABV ##################################################################################
+#  Summary statistics for the ABV variable.
+
+# Q7: CORRELATION: BITTERNESS AND ALCOHOLIC CONTENT ##########################################################
+# Is there an apparent relationship between the bitterness of the beer and its alcoholic content? 
+# Draw a scatter plot. You are welcome to use the ggplot2 library for graphs. 
+# Please ignore missing values in your analysis. 
+# Make your best judgment of a relationship and EXPLAIN your answer.
 
 
 # CORRELATION/COVARIANCE
