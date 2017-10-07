@@ -10,7 +10,8 @@
 #rm(kansas09)
 #detach("package:acs", unload=TRUE)
 
-path<-"/Users/bgranger/Documents/SMU/DDS/SMU_DoingDataScience/Assignment_6_CaseStudy"
+# DEFINE WORKING DIRECTORY
+path<-"/Users/bgranger/Documents/SMU/DDS/SMU_DoingDataScience/Assignment_6_CaseStudy/DATA"
 setwd(path)
 
 #READ BREWERIES DATA
