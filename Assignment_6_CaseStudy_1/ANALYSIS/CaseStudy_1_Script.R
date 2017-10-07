@@ -11,7 +11,7 @@
 #detach("package:acs", unload=TRUE)
 
 # DEFINE WORKING DIRECTORY
-path<-"/Users/bgranger/Documents/SMU/DDS/SMU_DoingDataScience/Assignment_6_CaseStudy/DATA"
+path<-"/Users/bgranger/Documents/SMU/DDS/SMU_DoingDataScience/Assignment_6_CaseStudy_1/DATA"
 setwd(path)
 
 #READ BREWERIES DATA
@@ -25,12 +25,18 @@ Beers$Style<-as.factor(Beers$Style)
 # MERGE BREWERIES AND BEER                       
 Breweries_Beers<- merge(Breweries, Beers, by=c("Brewery_id"), all = TRUE)
 
-# Q1: How many breweries are present in each state?
-library(magrittr)
-library(dplyr)
+
+
+
 #library(doBy)
 rm(doBy)
 
+# Q1: How many breweries are present in each state?
+## LOAD magrittr PACKAGE TO ACCESS THE PIPE "%>%" OPERATOR, WHICH ALLOWS FOR VALUES TO FORWARD
+## INTO AN EXPRESSION OR FUNCTIONAL CALL
+## LOAD THE dplyr PACKAGE TO ACCESS THE "group_by"
+library(magrittr)
+library(dplyr)
 Breweries_Per_State<-Breweries %>% group_by(State) %>% summarise(Count_By_State = length(State))
 
 
