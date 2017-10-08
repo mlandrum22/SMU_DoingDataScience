@@ -59,6 +59,9 @@ emptyObservations   # Only NAs are in ABV and IBU columns. 62 ABV, 1005 IBU
 # a) Compute the median alcohol content and international bitterness unit for each state. 
 # b) Plot a bar chart to compare.
 
+Median_ABV_Per_State<-Breweries_Beers %>% group_by(State) %>% summarise(Median_ABV_By_State = median(ABV,na.rm=TRUE))
+Median_IBU_Per_State<-Breweries_Beers %>% group_by(State) %>% summarise(Median_IBU_By_State = median(IBU,na.rm=TRUE))
+
 # Q5: BY STATE: MAX ALCOHOLIC BEER, BITTER BEER ############################################################## 
 # a) Which state has the maximum alcoholic (ABV) beer? 
 # b) Which state has the most bitter (IBU) beer?
